@@ -18,7 +18,6 @@ JQUERY_SCROLLTO_VERSION=2.1.2
 LEAFLET_VERSION=1.0.2
 LEAFLET_AWESOME_MARKERS_VERSION=2.0.2
 
-cd /home/flopp/safari
 C=".cache"
 D=".deploy"
 mkdir -p $D
