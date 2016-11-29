@@ -1,0 +1,9 @@
+<entry>
+    <id>##CODE##</id>
+    <title><![CDATA[##TITLE##]]></title>
+    <updated>##DATE##</updated>
+    <author><name><![CDATA[##OWNER##]]></name></author>
+    <link rel="alternate" href="https://www.opencaching.de/##CODE##" />
+    <content type="html"><![CDATA[##DESC##]]></content>
+    ##IMAGE##
+</entry>

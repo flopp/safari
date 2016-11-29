@@ -1,0 +1,10 @@
+<div id="cache##CODE##" class="list-group-item cache" onclick="App.click('##CODE##')">
+    <span class="title">##NAME##</span><br />
+    <span>##CODE## | ##OWNER## | ##DATE##</span><br />
+    <span><span class="finds">##FINDS##</span> | <span class="finds">##FINDS2##</span></span><br />
+    <div class="details">
+        ##DESC##
+        ##IMG##
+        <a class="btn btn-small btn-default" href="##URL##" target="_blank"><i class="icon-external-link-sign"></i> Zeige bei Opencaching.de</a>
+    </div>
+</div>

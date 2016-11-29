@@ -1,0 +1,2 @@
+<h2><i class="fa fa-list"></i> Safari-Caches (<span id="cachecount">##COUNT##</span>)</h2>
+<div id="cachelist" class="list-group">

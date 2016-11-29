@@ -1,0 +1,8 @@
+RewriteEngine on
+
+# force ssl
+RewriteCond     %{SERVER_PORT} ^80$
+RewriteRule     ^(.*)$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R]
+
+RewriteBase /
+RewriteRule ^([Oo][Cc].*)$ index.php?id=$1

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Safari-Caches</title>
+  <subtitle>Feed mit allen Safari-Caches</subtitle>
+  <link rel="self" href="https://safari.flopp.net/"/>
+  <updated>##DATE##</updated>
+  <author>
+    <name>Florian Pigorsch</name>
+    <uri>http://florian-pigorsch.de/</uri>
+  </author>
+  <id>https://safari.flopp.net/feed.xml</id>
+
