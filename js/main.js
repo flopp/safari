@@ -165,7 +165,7 @@ App.click = function (cache_code) {
                 }
             });
 
-            self.m_lines = new L.multiPolyline(lines);
+            self.m_lines = new L.polyline(lines);
             self.m_lines.addTo(self.m_map);
             self.m_map.fitBounds(bounds);
         },
