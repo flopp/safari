@@ -25,24 +25,6 @@
 
     <!-- local -->
     <link rel="stylesheet" href="css/main.css" />
-
-<?php
-$cache_code = "";
-if (!empty($_GET)) {
-    if (isset($_GET['id'])) {
-        $cache_code = $_GET['id'];
-    }
-}
-?>
-    <script>
-    $(document).ready( function() {
-<?php
-        echo <<< EOL
-        App.init('$cache_code');
-EOL;
-?>
-    });
-    </script>
 </head>
 
 <body>
@@ -167,6 +149,23 @@ EOL;
     <script src="ext/bootstrap-lightbox/ekko-lightbox.min.js"></script>
     
     <script src="js/main.js?t=TSTAMP"></script>
+    
+    <script>
+    $(document).ready( function() {
+<?php
+        $cache_code = "";
+        if (!empty($_GET)) {
+            if (isset($_GET['id'])) {
+                $cache_code = $_GET['id'];
+            }
+        }
+
+        echo <<< EOL
+        App.init('$cache_code');
+EOL;
+?>
+    });
+    </script>
 </body>
 
 </html>
