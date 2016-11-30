@@ -11,7 +11,7 @@ function coords(s) {
     'use strict';
 
     var p = s.split('|');
-    return new L.LatLng(parseFloat(p[0]), parseFloat(p[1]));
+    return new L.latLng(parseFloat(p[0]), parseFloat(p[1]));
 }
 
 
@@ -33,7 +33,7 @@ App.init = function (cache_code) {
     var sidebar = L.control.sidebar('sidebar').addTo(this.m_map),
         osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
         osmAttrib = 'Map by <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> & contributors',
-        osmLayer = new L.TileLayer(osmUrl, {maxZoom: 18, attribution: osmAttrib});
+        osmLayer = new L.tileLayer(osmUrl, {maxZoom: 18, attribution: osmAttrib});
     osmLayer.addTo(this.m_map);
     L.control.zoom({position: 'topright'}).addTo(this.m_map);
 
@@ -131,17 +131,17 @@ App.click = function (cache_code) {
         success: function (response) {
             var cache_coords = coords(response.cache.coords),
                 lines = [],
-                bounds = new L.LatLngBounds(cache_coords);
+                bounds = new L.latLngBounds(cache_coords);
             bounds.extend(cache_coords);
 
-            self.m_marker = new L.Marker(cache_coords, {icon: self.m_icon_cache});
+            self.m_marker = new L.marker(cache_coords, {icon: self.m_icon_cache});
             self.m_marker.addTo(self.m_map);
 
             $.each(response.logs, function (i, log) {
                 if (log.coords !== null) {
                     var comment, content,
                         log_coords = coords(log.coords),
-                        m = new L.Marker(log_coords, {icon: self.m_icon_log});
+                        m = new L.marker(log_coords, {icon: self.m_icon_log});
                     m.addTo(self.m_map);
                     self.m_log_markers.push(m);
                     lines.push([cache_coords, log_coords]);
@@ -165,7 +165,7 @@ App.click = function (cache_code) {
                 }
             });
 
-            self.m_lines = new L.MultiPolyline(lines);
+            self.m_lines = new L.multiPolyline(lines);
             self.m_lines.addTo(self.m_map);
             self.m_map.fitBounds(bounds);
         },
