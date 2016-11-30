@@ -45,7 +45,8 @@ mkdir -p ${D}/js
 
 echo "$(date) - UPDATING CACHES..."
 # update thumbnails, create html files
-ln -s $(pwd)/.private/authdata.py py
+
+ln -fs $(pwd)/.private/authdata.py py
 $PYTHON py/update-db.py
 cp -a ${C}/feed.xml ${D}
 cp -a ${C}/sidebar.html ${D}
