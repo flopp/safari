@@ -33,7 +33,7 @@ App.init = function (cache_code) {
     var sidebar = L.control.sidebar('sidebar').addTo(this.m_map),
         osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
         osmAttrib = 'Map by <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> & contributors',
-        osmLayer = new L.TileLayer(osmUrl, {maxZoom: 18, attribution: osmAttrib, subdomains: ['a', 'b', 'c']});
+        osmLayer = new L.TileLayer(osmUrl, {maxZoom: 18, attribution: osmAttrib});
     osmLayer.addTo(this.m_map);
     L.control.zoom({position: 'topright'}).addTo(this.m_map);
 
