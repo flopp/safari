@@ -2,3 +2,4 @@
 .cache
 .private
 py/authdata.py
+py/__pycache__
