@@ -37,15 +37,15 @@ class SafariCache:
         elif images is not None and len(images) > 0:
             return u"{0}".format(images[0]['url'])
         else:
-            ex = 'src="http:\/\/www.opencaching.de\/images\/uploads\/(\w+-\w+-\w+-\w+-\w+\.jpg)"'
+            ex = 'src="https?:\/\/www.opencaching.de\/images\/uploads\/(\w+-\w+-\w+-\w+-\w+\.jpg)"'
             match = re.search(ex, description)
             if match:
-                return u"http://www.opencaching.de/images/uploads/{0}".format(match.group(1))
+                return u"https://www.opencaching.de/images/uploads/{0}".format(match.group(1))
 
             ex = '"images\/uploads\/(\w+-\w+-\w+-\w+-\w+\.jpg)"'
             match = re.search(ex, description)
             if match:
-                return u"http://www.opencaching.de/images/uploads/{0}".format(match.group(1))
+                return u"https://www.opencaching.de/images/uploads/{0}".format(match.group(1))
 
             ex = '<img [^>]*src="([^"]+)"'
             for match in re.finditer(ex, description):
