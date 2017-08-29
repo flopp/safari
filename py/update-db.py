@@ -49,13 +49,14 @@ def main():
     else:
         print("-- downloading query...")
         oc_codes = download_query(OC_USERNAME, OC_PASSWORD, OC_QUERYID)
+        print("-> codes: {}".format(len(oc_codes)))
         json_data = okapi.get_caches(oc_codes, ['code', 'name', 'location', 'status', 'url', 'owner', 'founds', 'date_hidden', 'date_created', 'short_description', 'description', 'images', 'preview_image'])
         store_json(file_name, json_data)
 
     print("-- analyzing cache data...")
     caches = load_caches(json_data)
     caches = sorted(caches, key=lambda c: c._date, reverse=True)
-    print("-- caches: {}".format(len(caches)))
+    print("-> caches: {}".format(len(caches)))
 
     print("-- analyzing log data...")
     total_logs = 0

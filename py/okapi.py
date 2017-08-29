@@ -4,7 +4,7 @@ import requests
 import json
 
 class Okapi:
-    _base_url = 'http://www.opencaching.de/okapi/'
+    _base_url = 'https://www.opencaching.de/okapi/'
     _consumer_key = None
     
     def __init__(self, okapi_key):

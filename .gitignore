@@ -1,0 +1,4 @@
+.deploy
+.cache
+.private
+py/authdata.py

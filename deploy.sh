@@ -20,6 +20,7 @@ LEAFLET_AWESOME_MARKERS_VERSION=2.0.2
 
 C=".cache"
 D=".deploy"
+rm -rf $D
 mkdir -p $D
 
 (
@@ -33,8 +34,6 @@ else
     rm -rf ${C}/json ${C}/orig ${C}/big ${C}/small
 fi
 
-rm -rf ${D}
-mkdir -p ${D}
 mkdir -p ${D}/css
 mkdir -p ${D}/db
 mkdir -p ${D}/ext
