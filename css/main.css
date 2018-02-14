@@ -12,6 +12,10 @@ h2 {
     font-size: 14pt;
 }
 
+.sidebar-tabs > li > a {
+    line-height: 40px;
+}
+
 .hidden {
   display: none; }
 
