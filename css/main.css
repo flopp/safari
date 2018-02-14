@@ -12,7 +12,7 @@ h2 {
     font-size: 14pt;
 }
 
-.sidebar-tabs > li > a {
+.sidebar-tabs > li > a > i {
     line-height: 40px;
 }
 
