@@ -14,6 +14,7 @@ from sidebargen import *
 from dbgen import *
 from feedgen import *
 
+MANUAL_CACHES_FILE="./static/manual-caches.txt"
 CACHE_DIR = "./.cache"
 SIZE_BIG=500
 SIZE_SMALL=175
@@ -49,6 +50,16 @@ def main():
     else:
         print("-- downloading query...")
         oc_codes = download_query(OC_USERNAME, OC_PASSWORD, OC_QUERYID)
+        try:
+            with open(MANUAL_CACHES_FILE, "r") as f:
+                for oc_code in f:
+                    oc_code = oc_code.strip()
+                    if oc_code.startswith("OC"):
+                        print("-- adding manual code {}".format(oc_code))
+                        oc_codes.append(oc_code)
+        except IOError as e:
+            pass
+        
         print("-> codes: {}".format(len(oc_codes)))
         json_data = okapi.get_caches(oc_codes, ['code', 'name', 'location', 'status', 'url', 'owner', 'founds', 'date_hidden', 'date_created', 'short_description', 'description', 'images', 'preview_image'])
         store_json(file_name, json_data)
