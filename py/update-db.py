@@ -113,6 +113,7 @@ def main():
 
     print("-- creating db...")
     create_db(caches, ".cache/safari.sqlite")
+    collect_logs(caches, ".cache/logs.js")
 
     print("-- create feed...")
     create_feed(caches, ".cache/feed.xml")

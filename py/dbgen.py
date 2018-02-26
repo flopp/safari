@@ -4,6 +4,27 @@ import sqlite3
 import os
 
 
+def collect_logs(caches, file_name):
+    with open(file_name, 'w') as f:
+        f.write('var logs = [\n')
+        for cache in caches:
+            first = True
+            for log in cache._logs:
+                if log._coordinates:
+                    c = log._coordinates.split('|')
+                    if first:
+                        f.write('[{:.5}, {:.5}, "{}", "{}", "{}"],\n'.format(
+                            float(c[0]), float(c[1]),
+                            cache._code, cache._name.replace('"', '\''),
+                            log._user.replace('"', '\'')))
+                        first = False
+                    else:
+                        f.write('[{:.5}, {:.5}, "{}"],\n'.format(
+                            float(c[0]), float(c[1]),
+                            log._user.replace('"', '\'')))
+        f.write('];')
+
+
 def create_db(caches, file_name):
     if os.path.isfile(file_name):
         os.remove(file_name)

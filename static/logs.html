@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Safari-Logs</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet-src.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.Default.css" />
+    <script src="https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js"></script>
+    <script src="logs.js?cachebuster=TSTAMP"></script>
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        #map {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    
+    <script type="text/javascript">
+        var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 18,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }),
+            latlng = L.latLng(50, 12);
+
+        var map = L.map('map', {center: latlng, zoom: 5, layers: [tiles]});
+        var markers = L.markerClusterGroup();
+        
+        var code = '';
+        var name = '';
+        var user = '';
+        for (var i = 0; i < logs.length; i++) {
+            var a = logs[i];
+            if (a.length > 3) {
+                code = a[2];
+                name = a[3];
+                user = a[4];
+            } else {
+                user = a[2];
+            }
+            var marker = L.marker(new L.LatLng(a[0], a[1]));
+            marker.bindTooltip(user + ' @ ' + name);
+            marker.bindPopup('<a href="https://opencaching.de/' + code + '" target=_blank>' + code + '</a><br />' + name + '<br />' + user);
+            markers.addLayer(marker);
+        }
+
+        map.addLayer(markers);
+    </script>
+    
+    <script type="text/javascript">
+        var _paq = _paq || [];
+        _paq.push(["setDomains", ["*.safari.flopp.net"]]);
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+            var u="//flopp.grus.uberspace.de/piwik/";
+            _paq.push(['setTrackerUrl', u+'piwik.php']);
+            _paq.push(['setSiteId', '2']);
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+        })();
+    </script>
+</body>
+</html>

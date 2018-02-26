@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 for PYTHON in /usr/bin/python3 /usr/local/bin/python3 CANNOT_FIND_PYTHON ; do
     if [ -x $PYTHON ] ; then
         break
@@ -49,6 +51,7 @@ ln -fs $(pwd)/.private/authdata.py py
 $PYTHON py/update-db.py
 cp -a ${C}/feed.xml ${D}
 cp -a ${C}/sidebar.html ${D}
+cp -a ${C}/logs.js ${D}
 cp -a ${C}/small/* ${D}/img/small
 cp -a ${C}/safari.sqlite ${D}/db
 
@@ -56,6 +59,7 @@ cp -a ${C}/safari.sqlite ${D}/db
 cp -a static/index.php ${D}
 cp -a static/safaridb.php ${D}
 cp -a static/.htaccess ${D}
+cp -a static/log.html ${D}
 cp -a js/*.js ${D}/js
 cp -a css/*.css ${D}/css
 
@@ -68,6 +72,9 @@ sed -i \
     -e "s/LEAFLET_VERSION/${LEAFLET_VERSION}/g" \
     -e "s/LEAFLET_AWESOME_MARKERS_VERSION/${LEAFLET_AWESOME_MARKERS_VERSION}/g" \
     ${D}/index.php
+sed -i \
+    -e "s/TSTAMP/$(date +%s)/g" \
+    ${D}/logs.js
 
 if [ -f .private/piwik-code ] ; then
     echo "inserting PIWIK code"
