@@ -59,7 +59,7 @@ cp -a ${C}/safari.sqlite ${D}/db
 cp -a static/index.php ${D}
 cp -a static/safaridb.php ${D}
 cp -a static/.htaccess ${D}
-cp -a static/log.html ${D}
+cp -a static/logs.html ${D}
 cp -a js/*.js ${D}/js
 cp -a css/*.css ${D}/css
 
@@ -74,7 +74,7 @@ sed -i \
     ${D}/index.php
 sed -i \
     -e "s/TSTAMP/$(date +%s)/g" \
-    ${D}/logs.js
+    ${D}/logs.html
 
 if [ -f .private/piwik-code ] ; then
     echo "inserting PIWIK code"
