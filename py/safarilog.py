@@ -6,6 +6,7 @@ import dateutil.parser
 
 class SafariLog:
     _uuid = None
+    _internal_id = None
     _type = None
     _date = None
     _user = None
@@ -16,6 +17,7 @@ class SafariLog:
 
     def load_from_json(self, json_data):
         self._uuid = json_data['uuid']
+        self._internal_id = json_data['internal_id']
         self._type = json_data['type']
         self._date = dateutil.parser.parse(json_data['date'])
         self._user = json_data['user']['username']

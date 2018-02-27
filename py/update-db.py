@@ -61,7 +61,7 @@ def main():
             pass
         
         print("-> codes: {}".format(len(oc_codes)))
-        json_data = okapi.get_caches(oc_codes, ['code', 'name', 'location', 'status', 'url', 'owner', 'founds', 'date_hidden', 'date_created', 'short_description', 'description', 'images', 'preview_image'])
+        json_data = okapi.get_caches(oc_codes, ['code', 'name', 'location', 'status', 'url', 'owner', 'founds', 'date_hidden', 'date_created', 'short_description', 'description', 'images', 'preview_image', 'internal_id'])
         store_json(file_name, json_data)
 
     print("-- analyzing cache data...")
@@ -77,7 +77,7 @@ def main():
         if os.path.isfile(file_name):
             json_data = load_json(file_name)
         else:
-            json_data = okapi.get_logs(cache._code, ['uuid', 'date', 'user', 'type', 'comment', 'images'])
+            json_data = okapi.get_logs(cache._code, ['uuid', 'date', 'user', 'type', 'comment', 'images', 'internal_id'])
             store_json(file_name, json_data)
         cache._logs = load_logs(json_data)
 

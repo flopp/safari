@@ -40,18 +40,24 @@
         var code = '';
         var name = '';
         var user = '';
+        var cache_id = '';
+        var log_id = '';
         for (var i = 0; i < logs.length; i++) {
             var a = logs[i];
-            if (a.length > 3) {
+            if (a.length > 4) {
                 code = a[2];
                 name = a[3];
                 user = a[4];
+                cache_id = a[5];
+                log_id = a[6];
             } else {
                 user = a[2];
+                log_id = a[3];
             }
             var marker = L.marker(new L.LatLng(a[0], a[1]));
-            marker.bindTooltip(user + ' @ ' + name);
-            marker.bindPopup('<a href="https://opencaching.de/' + code + '" target=_blank>' + code + '</a><br />' + name + '<br />' + user);
+            var cache_url = 'https://opencaching.de/' + code;
+            var log_url = 'https://www.opencaching.de/viewcache.php?cacheid=' + cache_id + '&log=A#log' + log_id;
+            marker.bindPopup('<a href="' + cache_url + '" target=_blank>[' + code + '] ' + name + '</a><br /><a href="' + log_url + '" target=_blank>Log von ' + user + '</a>');
             markers.addLayer(marker);
         }
 

@@ -6,6 +6,7 @@ import dateutil.parser
 
 class SafariCache:
     _code = None
+    _internal_id = None
     _name = None
     _url = None
     _coordinates = None
@@ -20,6 +21,7 @@ class SafariCache:
     
     def load_from_json(self, json_data):
         self._code = json_data['code']
+        self._internal_id = json_data['internal_id']
         self._name = json_data['name']
         self._url = json_data['url']
         self._coordinates = json_data['location']
