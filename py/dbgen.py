@@ -13,13 +13,13 @@ def collect_logs(caches, file_name):
                 if log._coordinates:
                     c = log._coordinates.split('|')
                     if first:
-                        f.write('[{:.5}, {:.5}, "{}", "{}", "{}"],\n'.format(
+                        f.write('[{:.5f}, {:.5f}, "{}", "{}", "{}"],\n'.format(
                             float(c[0]), float(c[1]),
                             cache._code, cache._name.replace('"', '\''),
                             log._user.replace('"', '\'')))
                         first = False
                     else:
-                        f.write('[{:.5}, {:.5}, "{}"],\n'.format(
+                        f.write('[{:.5f}, {:.5f}, "{}"],\n'.format(
                             float(c[0]), float(c[1]),
                             log._user.replace('"', '\'')))
         f.write('];')
