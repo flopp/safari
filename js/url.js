@@ -25,6 +25,11 @@ Url.getParams = function () {
             }
         }
     }
+    
+    p = window.location.href.match(/.*\/(oc[a-z0-9]+)$/i);
+    if (p) {
+        params['id'] = p[1].toUpperCase();
+    }
 
     return params;
 };
