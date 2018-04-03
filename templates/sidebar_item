@@ -5,6 +5,6 @@
     <div class="details">
         ##DESC##
         ##IMG##
-        <a class="btn btn-small btn-light" href="##URL##" target="_blank"><i class="icon-external-link-sign"></i> Zeige bei Opencaching.de</a>
+        <a class="btn btn-sm btn-light" href="##URL##" target="_blank">Zeige bei Opencaching.de</a>
     </div>
 </div>

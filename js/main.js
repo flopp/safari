@@ -159,7 +159,10 @@ App.click = function (cache_code) {
                     comment = comment.replace( /="lib/g, '="https://opencaching.de/lib' );
                     comment = comment.replace( /src="http:/g, 'src="https:' );
 
-                    content = '<b>' + log.type + '</b> von <b>' + log.user + '</b> am <b>' + log.timestamp.split(" ")[0] + '</b>:<hr />' + comment;
+                    content = '<b>' + log.type + '</b> von <b>' + log.user + '</b> am <b>' + log.timestamp.split(" ")[0] + '</b><br />';
+                    
+                    content += '<a class="btn btn-sm btn-default" href="https://www.opencaching.de/viewcache.php?cacheid=' + cache.internal_id + '&log=A#log' + log.internal_id + '" target="_blank">Zeige bei Opencaching.de</a><br />';
+                    content += '<hr />' + comment;
                     if (log.images) {
                         content += '<hr /><div class="logimages">';
                         $.each(log.images, function (i, image) {
