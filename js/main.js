@@ -17,6 +17,7 @@ function coords(s) {
 
 var App = {};
 
+App.m_clickLock = false;
 App.m_map = null;
 App.m_selected_code = null;
 App.m_marker = null;
@@ -104,9 +105,14 @@ App.removeMarkers = function () {
 
 App.click = function (cache_code) {
     'use strict';
-
+    
     var self = this,
         cacheDiv = this.cacheDiv(cache_code);
+    
+    if (self.m_clickLock) {
+        return;
+    }
+    self.m_clickLock = true;
 
     if (this.m_selected_code) {
         App.unhighlight(this.m_selected_code);
@@ -133,7 +139,8 @@ App.click = function (cache_code) {
                 lines = [],
                 bounds = new L.latLngBounds(cache_coords);
             bounds.extend(cache_coords);
-
+            
+            App.removeMarkers();
             self.m_marker = new L.marker(cache_coords, {icon: self.m_icon_cache});
             self.m_marker.addTo(self.m_map);
 
@@ -168,9 +175,13 @@ App.click = function (cache_code) {
             self.m_lines = new L.polyline(lines);
             self.m_lines.addTo(self.m_map);
             self.m_map.fitBounds(bounds);
+            
+            self.m_clickLock = false;
         },
         error: function (jqXHR, exception) {
             console.log("AJAX request 'safari.db?code=" + cache_code + "' failed.");
+            
+            self.m_clickLock = false;
         }
     });
 };
