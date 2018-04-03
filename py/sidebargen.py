@@ -9,13 +9,28 @@ def load_template(file_name):
         return f.read()
 
 
-def create_sidebar(caches, target):
+def create_sidebar(caches, index_template, target):
     header_template = load_template('sidebar_header')
     item_template = load_template('sidebar_item')
     img_template = load_template('sidebar_img')
     desc_template = load_template('sidebar_desc')
     footer_template = load_template('sidebar_footer')
+    
+    index_prefix = []
+    index_suffix = []
+    with open(index_template, 'r') as f:
+        prefix = True
+        for line in f.readlines():
+            if 'SIDEBAR-CONTENT' in line:
+                prefix = False
+            elif prefix:
+                index_prefix.append(line)
+            else:
+                index_suffix.append(line)
+    
     with open (target, 'w') as f:
+        for line in index_prefix:
+            f.write(line)
         f.write(header_template.replace('##COUNT##', str(len(caches))))
         for cache in caches:
             it = item_template
@@ -55,3 +70,5 @@ def create_sidebar(caches, target):
             it = it.replace('##IMG##', img)
             f.write(it)
         f.write(footer_template.replace('##DATE##', datetime.datetime.now().isoformat()))
+        for line in index_suffix:
+            f.write(line)

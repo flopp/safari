@@ -50,13 +50,12 @@ echo "$(date) - UPDATING CACHES..."
 ln -fs $(pwd)/.private/authdata.py py
 $PYTHON py/update-db.py
 cp -a ${C}/feed.xml ${D}
-cp -a ${C}/sidebar.html ${D}
+cp -a ${C}/index.html ${D}
 cp -a ${C}/logs.js ${D}
 cp -a ${C}/small/* ${D}/img/small
 cp -a ${C}/safari.sqlite ${D}/db
 
 # create base files
-cp -a static/index.html ${D}
 cp -a static/safaridb.php ${D}
 cp -a static/.htaccess ${D}
 cp -a static/logs.html ${D}

@@ -119,7 +119,7 @@ def main():
     create_feed(caches, ".cache/feed.xml")
 
     print("-- creating sidebar...")
-    create_sidebar(caches, ".cache/sidebar.html")
+    create_sidebar(caches, "static/index.html", ".cache/index.html")
 
 
 if __name__ == '__main__':
