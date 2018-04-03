@@ -62,6 +62,10 @@ h2 {
 .logimages > a > img {
   vertical-align: middle; }
 
+.sidebar-close > i {
+  line-height: 40px;
+}
+
 @media (max-width: 767px) {
   .only-small {
     display: inherit !important; }

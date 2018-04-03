@@ -74,7 +74,7 @@ App.init = function (cache_code) {
         markerColor: 'green'
     });
 
-    if (cache_code !== '') {
+    if ((cache_code !== undefined) && (cache_code !== '')) {
         this.click(cache_code);
     }
 };
