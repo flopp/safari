@@ -92,7 +92,7 @@ echo "$(date) - UPDATING THIRD PARTY LIBS..."
 
 # leaflet sidebar v2
 if [ -d ${C}/ext/sidebar-v2/.git ] ; then
-    (cd ${C}/ext/sidebar-v2/ && git pull origin master)
+    (cd ${C}/ext/sidebar-v2/ && git pull --quiet origin master)
 else
     (cd ${C}/ext && git clone https://github.com/Turbo87/sidebar-v2.git)
 fi
@@ -102,7 +102,7 @@ cp -a ${C}/ext/sidebar-v2/js/leaflet-sidebar.js ${D}/ext/leaflet-sidebar-v2
 
 # boostrap lightbox
 if [ -d ${C}/ext/bootstrap-lightbox/.git ] ; then
-    (cd ${C}/ext/bootstrap-lightbox/ && git pull origin master)
+    (cd ${C}/ext/bootstrap-lightbox/ && git pull --quiet origin master)
 else
     (cd ${C}/ext && git clone https://github.com/ashleydw/lightbox.git bootstrap-lightbox)
 fi
