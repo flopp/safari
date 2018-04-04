@@ -13,12 +13,34 @@ if [ ! -x $PYTHON ] ; then
     exit 1
 fi
 
+CACHEBUSTER=$(date +%s)
 BOOTSTRAP_VERSION=4.0.0
 FONTAWESOME_VERSION=4.7.0
 JQUERY_VERSION=3.3.1
 JQUERY_SCROLLTO_VERSION=2.1.2
 LEAFLET_VERSION=1.3.1
 LEAFLET_AWESOME_MARKERS_VERSION=2.0.2
+LEAFLET_MARKER_CLUSTER_VERSION=1.3.0
+
+function insert_versions() {
+    sed -i \
+        -e "s/TSTAMP/${CACHEBUSTER}/g" \
+        -e "s/BOOTSTRAP_VERSION/${BOOTSTRAP_VERSION}/g" \
+        -e "s/JQUERY_VERSION/${JQUERY_VERSION}/g" \
+        -e "s/JQUERY_SCROLLTO_VERSION/${JQUERY_SCROLLTO_VERSION}/g" \
+        -e "s/FONTAWESOME_VERSION/${FONTAWESOME_VERSION}/g" \
+        -e "s/LEAFLET_VERSION/${LEAFLET_VERSION}/g" \
+        -e "s/LEAFLET_AWESOME_MARKERS_VERSION/${LEAFLET_AWESOME_MARKERS_VERSION}/g" \
+        -e "s/LEAFLET_MARKER_CLUSTER_VERSION/${LEAFLET_MARKER_CLUSTER_VERSION}/g" \
+        $1
+    if [ -f .private/piwik-code ] ; then
+        echo "inserting PIWIK code"
+        sed -i '/<!-- PIWIK-CODE -->/ {
+            r .private/piwik-code
+            g
+            }' $1
+    fi
+}
 
 C=".cache"
 D=".deploy"
@@ -51,7 +73,7 @@ ln -fs $(pwd)/.private/authdata.py py
 $PYTHON py/update-db.py
 cp -a ${C}/feed.xml ${D}
 cp -a ${C}/index.html ${D}
-cp -a ${C}/logs.js ${D}
+cp -a ${C}/log-data.js ${D}/js
 cp -a ${C}/small/* ${D}/img/small
 cp -a ${C}/safari.sqlite ${D}/db
 
@@ -59,29 +81,13 @@ cp -a ${C}/safari.sqlite ${D}/db
 cp -a static/safaridb.php ${D}
 cp -a static/.htaccess ${D}
 cp -a static/logs.html ${D}
+cp -a static/info.html ${D}
 cp -a js/*.js ${D}/js
 cp -a css/*.css ${D}/css
 
-sed -i \
-    -e "s/TSTAMP/$(date +%s)/g" \
-    -e "s/BOOTSTRAP_VERSION/${BOOTSTRAP_VERSION}/g" \
-    -e "s/JQUERY_VERSION/${JQUERY_VERSION}/g" \
-    -e "s/JQUERY_SCROLLTO_VERSION/${JQUERY_SCROLLTO_VERSION}/g" \
-    -e "s/FONTAWESOME_VERSION/${FONTAWESOME_VERSION}/g" \
-    -e "s/LEAFLET_VERSION/${LEAFLET_VERSION}/g" \
-    -e "s/LEAFLET_AWESOME_MARKERS_VERSION/${LEAFLET_AWESOME_MARKERS_VERSION}/g" \
-    ${D}/index.html
-sed -i \
-    -e "s/TSTAMP/$(date +%s)/g" \
-    ${D}/logs.html
-
-if [ -f .private/piwik-code ] ; then
-    echo "inserting PIWIK code"
-    sed -i '/<!-- PIWIK-CODE -->/ {
-        r .private/piwik-code
-        g
-    }' ${D}/index.html
-fi
+insert_versions ${D}/index.html
+insert_versions ${D}/info.html
+insert_versions ${D}/logs.html
 
 cp -a static/.htaccess ${D}
 cp -a .private/google* ${D}

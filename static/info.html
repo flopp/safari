@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Safari-Caches - Info</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="alternate" type="application/atom+xml" title="Safari-Caches Feed" href="https://safari.flopp.net/feed.xml" />
+    <link rel="author" href="https://plus.google.com/100782631618812527586" />
+    
+    <!-- external stuff from CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/BOOTSTRAP_VERSION/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/FONTAWESOME_VERSION/css/font-awesome.min.css" rel="stylesheet" />
+    
+    <!-- local stuff -->
+    <link rel="stylesheet" href="css/main.css?cachebuster=TSTAMP" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="#">Safari-Caches</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Cache-Karte</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logs.html">Log-Karte</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Info</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="container">
+            <h2>Safari-Caches?</h2>
+            <p>
+                Safari-Caches sind virtuelle Caches, die nicht an einen bestimmten Ort gebunden sind, sondern an mehreren Orten gefunden werden können (andere Bezeichnung: 'Locationless/Reverse'-Caches).
+            </p>
+            <p>
+                Die Aufgabe bei Safari-Caches liegt darin, ein Objekt oder einen Ort zu finden (von dem es auf der Welt mehrere gibt), der vom Cache-Ersteller vorgegeben wurde. Dieser Fund wird dann im Onlinelog bei <a href="https://www.opencaching.de/" target="_blank">Opencaching.de</a> z.B. mit Bildern und Koordinaten zu dokumentiert.
+            </p>
+            <p>
+                Weitere Infos zu Safari-Caches gibt es im <a href="http://wiki.opencaching.de/index.php/Reverse_(%E2%80%9ELocationless%E2%80%9C)_Caches" target="_blank">Wiki von Opencaching.de</a>
+            </p>
+            <p>
+                Um über neue Safari-Caches informiert zu werden, kann man folgenden <a href="https://safari.flopp.net/feed.xml" target="_blank"><i class="fa fa-rss"></i> RSS-Feed</a> abonnieren.
+            </p>
+                
+            <h2>Warum wird der Cache X hier nicht angezeigt?</h2>
+            <p>
+                Die Liste der Safari-Caches wird nachts automatisch aktualisiert. Dabei werden alle mit dem 'Safari-Attribut' markierten Caches von Opencaching.de übernommen. Ist dieses Attribut nicht gesetzt, landet der Cache hier nicht auf der Webseite.
+            </p>
+            <p>
+                Falls ein neuer Cache nach einem Tag hier immer noch nicht gelistet ist, kann auch ein technischer Fehler vorliegen. In diesem Fall wäre ich über einen Mail an <a href="mailto:mail@flopp.net"><i class="fa fa-envelope"></i> mail@flopp.net</a> sehr dankbar.
+            </p>
+                
+            <h2>Warum wird das Log von X beim Cache Y hier nicht angezeigt?</h2>
+            <p>
+                Wie die Liste der Safari-Caches, werden die Logs jedes Caches nachts automatisch aktualisiert. Die einzelnen Logs werden dabei nach Koordinaten durchsucht - damit Koordinaten erkannt werden können, müssen sie im Log im Grad/Minuten-Format vorliegen (etwa <tt>N 48 12.345 E 007 34.567</tt>).
+            </p>
+            <p>
+                Nur wenn solche Koordinaten im Log erkannt werden, wird das Log samt Marker hier angezeigt.
+            </p>
+        
+            <h2>Beim Cache X wird kein Bild angezeigt!</h2>
+            <p>
+                Beim ausgewählten Cache wird in der Cacheliste ein Vorschaubild angezeigt, wenn eins gefunden werden kann. Folgende Bilder werden dabei in Betracht gezogen:
+            </p>
+            <ol>
+                <li>Das Vorschaubild des Caches (Häkchen bei "Kartenvorschaubild" in den Bildeinstellungen des Caches bei Opencaching.de),</li>
+                <li>das erste, nicht als Spoiler markierte, Bild in der Bilderliste des Caches bei Opencaching.de,</li>
+                <li>das erste Bild, das in der Cachebeschreibung vorkommt und bei Opencaching.de gehostet wird.</li>
+            </ol>
+
+            <h2>Diese Webapp basiert auf folgenden Projekten:</h2>
+            <ul>
+                <li><a href="https://www.opencaching.de/okapi" target="_blank">Opencaching API (OKAPI)</a></li>
+                <li><a href="https://getbootstrap.com/" target="_blank">Bootstrap</a></li>
+                <li><a href="https://fontawesome.io/" target="_blank">Font Awesome</a></li>
+                <li><a href="https://leafletjs.com/" target="_blank">Leaflet</a></li>
+                <li><a href="https://github.com/lvoogdt/Leaflet.awesome-markers" target="_blank">Leaflet.awesome-markers</a></li>
+                <li><a href="https://github.com/Leaflet/Leaflet.markercluster" target="_blank">Leaflet.markercluster</a></li>
+                <li><a href="https://github.com/Turbo87/sidebar-v2" target="_blank">sidebar-v2</a></li>
+                <li><a href="http://jquery.com/" target="_blank">jQuery</a></li>
+                <li><a href="https://github.com/flesler/jquery.scrollTo" target="_blank">jQuery.scrollTo</a></li>
+            </ul>
+                
+            <h2>Allgemein:</h2>
+            <p>
+                Die Safari-Map ist ein Projekt von <a href="https://www.florian-pigorsch.de/" target="_blank" alt="Florian Pigorsch"><i class="fab fa-github"></i> Florian Pigorsch</a>. Den Quellcode gibt's bei <a href="https://github.com/flopp/safari" target="_blank"><i class="fab fa-github"></i> Github</a>.
+            </p>
+        </div>
+    </main>
+    
+    <!-- PIWIK-CODE -->
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/JQUERY_VERSION/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/BOOTSTRAP_VERSION/js/bootstrap.min.js"></script>
+</body>
+</html>
