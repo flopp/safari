@@ -17,7 +17,7 @@ main {
   top: 56px;
 }
 
-main > .content {
+main > .container {
     padding-top: 15px;
 }
 
