@@ -58,9 +58,9 @@ def create_cache_item(template, cache):
     if cache._short_description is not None:
         desc = cache._short_description
     img = ''
-    thumb = '.cache/small/{}.jpg'.format(cache._code)
+    thumb = '.cache/big/{}.jpg'.format(cache._code)
     if os.path.exists(thumb):
-        img = 'img/small/{}.jpg'.format(cache._code)
+        img = 'img/big/{}.jpg'.format(cache._code)
     finds = '{} Funde'.format(cache._founds)
     if cache._founds is 0:
         finds = 'keine Funde'
