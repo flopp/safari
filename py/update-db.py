@@ -98,7 +98,7 @@ def main():
     for cache in caches:
         if cache._preview_image is not None:
             extension = 'noext'
-            m = re.match('^.*\.([^.]+)$', cache._preview_image)
+            m = re.match('^.*\.([^.\?]+)(\?.*)?$', cache._preview_image)
             if m:
                 extension = m.group(1)
             raw_image = '{}/{}/{}.{}'.format(CACHE_DIR, "orig", cache._code, extension)
