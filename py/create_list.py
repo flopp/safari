@@ -96,7 +96,13 @@ def createlist(caches, chunk_size):
         target_file_name = '.cache/' + create_file_name(chunk_index, chunk_count)
         pagination = create_pagination(chunk_index, chunk_count)
         with open(target_file_name, 'w') as f:
-            f.write(header_template.replace('##PAGINATION##', pagination))
+            prev = create_file_name(chunk_index - 1, chunk_count)
+            next = create_file_name(chunk_index + 1, chunk_count)
+            f.write(header_template
+                    .replace('##PREVLINK##', '<link rel="prev" href="{}">'.format(prev) if prev else '')
+                    .replace('##NEXTLINK##', '<link rel="next" href="{}">'.format(next) if next else '')
+                    .replace('##PAGINATION##', pagination)
+                    )
             for cache in chunk_caches:
                 f.write(create_cache_item(item_template, cache))
             f.write(footer_template.replace('##PAGINATION##', pagination))
