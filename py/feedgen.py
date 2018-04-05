@@ -3,16 +3,18 @@
 import os
 import datetime
 
+
 def load_feed_template(file_name):
     with open('templates/{}'.format(file_name), "r") as f:
         return f.read()
+
 
 def create_feed(caches, file_name):
     header_template = load_feed_template('atomfeed_header')
     item_template = load_feed_template('atomfeed_item')
     img_template = load_feed_template('atomfeed_item_image')
     footer_template = load_feed_template('atomfeed_footer')
-    with open (file_name, 'w') as f:
+    with open(file_name, 'w') as f:
         f.write(header_template.replace('##DATE##', datetime.datetime.now().isoformat()))
         for cache in caches:
             it = item_template
@@ -29,15 +31,16 @@ def create_feed(caches, file_name):
             f.write(it)
         f.write(footer_template)
 
+
 def sanitize_description(s):
-    s = s.replace('\'', '"');
-    s = s.replace( "href=\"OC", "href=\"https://www.opencaching.de/OC")
-    s = s.replace( "\"viewcache.php", "\"https://www.opencaching.de/viewcache.php")
-    s = s.replace( "\"viewprofile.php", "\"https://www.opencaching.de/viewprofile.php")
-    s = s.replace( "\"images/", "\"https://www.opencaching.de/images/")
-    s = s.replace( "&quot;images/", "&quot;https://www.opencaching.de/images/")
-    s = s.replace( "\"resource2/", "\"https://www.opencaching.de/resource2/")
-    s = s.replace( "\"lib/", "\"https://www.opencaching.de/lib/")
-    s = s.replace( "\"search.php", "\"https://www.opencaching.de/search.php")
-    s = s.replace( "\"thumbs.php", "\"https://www.opencaching.de/thumbs.php")
+    s = s.replace('\'', '"')
+    s = s.replace("href=\"OC", "href=\"https://www.opencaching.de/OC")
+    s = s.replace("\"viewcache.php", "\"https://www.opencaching.de/viewcache.php")
+    s = s.replace("\"viewprofile.php", "\"https://www.opencaching.de/viewprofile.php")
+    s = s.replace("\"images/", "\"https://www.opencaching.de/images/")
+    s = s.replace("&quot;images/", "&quot;https://www.opencaching.de/images/")
+    s = s.replace("\"resource2/", "\"https://www.opencaching.de/resource2/")
+    s = s.replace("\"lib/", "\"https://www.opencaching.de/lib/")
+    s = s.replace("\"search.php", "\"https://www.opencaching.de/search.php")
+    s = s.replace("\"thumbs.php", "\"https://www.opencaching.de/thumbs.php")
     return s

@@ -29,28 +29,28 @@ class SafariLog:
 
     def determine_coordinates(self):
         self._coordinates = None
-        try:
-            text = self._comment.lower()
-            text = re.sub(r'<[^>]*>', " ", text)
-            text = text.replace(",", ".")
-            text = re.sub(r'\s*\.\s*', '.', text)
-            text = re.sub(r'&[^&;];', " ", text)
-            text = text.replace("&deg;", " ")
-            tt = ""
-            
-            last_space = True
-            for c in text:
-                if c.isalnum() or c == ".":
-                    tt += c
-                    last_space = False
-                elif c == "o":
-                    tt += "e"
-                    last_space = False
-                elif not last_space:
-                    tt += " "
-                    last_space = True
-            text = tt
+        text = self._comment.lower()
+        text = re.sub(r'<[^>]*>', " ", text)
+        text = text.replace(",", ".")
+        text = re.sub(r'\s*\.\s*', '.', text)
+        text = re.sub(r'&[^&;];', " ", text)
+        text = text.replace("&deg;", " ")
+        tt = ""
 
+        last_space = True
+        for c in text:
+            if c.isalnum() or c == ".":
+                tt += c
+                last_space = False
+            elif c == "o":
+                tt += "e"
+                last_space = False
+            elif not last_space:
+                tt += " "
+                last_space = True
+        text = tt
+
+        try:
             hdms_re = r'([ns])\s*(\d+)\s+(\d+)\s+(\d[\d\.]*)\s*([ew])\s*(\d+)\s+(\d+)\s+(\d[\d\.]*)'
             hdm_re = r'([ns])\s*(\d+)\s+(\d[\d\.]*)\s*([ew])\s*(\d+)\s+(\d[\d\.]*)'
             hd_re = r'([ns])\s*(\d[\d\.]*)\s*([ew])\s*(\d[\d\.]*)'
@@ -82,7 +82,8 @@ class SafariLog:
             img['url'] = re.sub(r'^http:', "https:", img['url'])
             img['thumb_url'] = re.sub(r'^http:', "https:", img['thumb_url'])
     
-    def to_float(self, s):
+    @staticmethod
+    def to_float(s):
         s2 = ""
         dot = False
         for c in s:
@@ -102,7 +103,7 @@ class SafariLog:
         lng = self.to_float(hdms[5]) + self.to_float(hdms[6])/60.0 + self.to_float(hdms[7])/3600.0
         if hdms[4] == "w":
             lng = -lng
-        if (self.validate_coords(lat, lng)):
+        if self.validate_coords(lat, lng):
             return "{}|{}".format(lat, lng)
         else:
             return None
@@ -115,7 +116,7 @@ class SafariLog:
         lng = self.to_float(hdm[4]) + self.to_float(hdm[5])/60.0
         if hdm[3] == "w":
             lng = -lng
-        if (self.validate_coords(lat, lng)):
+        if self.validate_coords(lat, lng):
             return "{}|{}".format(lat, lng)
         else:
             return None
@@ -128,13 +129,14 @@ class SafariLog:
         lng = self.to_float(hd[3])
         if hd[2] == "w":
             lng = -lng
-        if (self.validate_coords(lat, lng)):
+        if self.validate_coords(lat, lng):
             return "{}|{}".format(lat, lng)
         else:
             return None
 
-    def validate_coords(self, lat, lng):
-        return -90 <= lat and lat <= 90 and -180 <= lng and lng <= 180
+    @staticmethod
+    def validate_coords(lat, lng):
+        return -90 <= lat <= 90 and -180 <= lng <= 180
 
     def to_string(self):
         return u"{0}: {1}, {2}".format(self._user, self._date, self._coordinates)

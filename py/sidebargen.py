@@ -28,7 +28,7 @@ def create_sidebar(caches, index_template, target):
             else:
                 index_suffix.append(line)
     
-    with open (target, 'w') as f:
+    with open(target, 'w') as f:
         for line in index_prefix:
             f.write(line)
         f.write(header_template.replace('##COUNT##', str(len(caches))))

@@ -1,5 +1,7 @@
-.deploy
 .cache
+.deploy
+.idea
 .private
+env
 py/authdata.py
 py/__pycache__

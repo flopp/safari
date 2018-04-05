@@ -11,12 +11,12 @@ Url.getParams = function () {
     'use strict';
 
     var params = {},
-        splitted = window.location.search.substr(1).split('&'),
+        s = window.location.search.substr(1).split('&'),
         i,
         p;
 
-    for (i = 0; i < splitted.length; i += 1) {
-        p = splitted[i].split('=', 2);
+    for (i = 0; i < s.length; i += 1) {
+        p = s[i].split('=', 2);
         if (p[0] !== "") {
             if (p.length === 1) {
                 params[p[0]] = "";

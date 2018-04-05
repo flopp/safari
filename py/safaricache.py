@@ -29,11 +29,13 @@ class SafariCache:
         self._owner_url = json_data['owner']['profile_url']
         self._short_description = json_data['short_description']
         self._description = json_data['description']
-        self._preview_image = self.determine_image(json_data['preview_image'], json_data['images'], json_data['description'])
+        self._preview_image = \
+            self.determine_image(json_data['preview_image'], json_data['images'], json_data['description'])
         self._founds = int(json_data['founds'])
         self._date = dateutil.parser.parse(json_data['date_created'])
     
-    def determine_image(self, preview_image, images, description):
+    @staticmethod
+    def determine_image(preview_image, images, description):
         if preview_image is not None:
             return u"{0}".format(preview_image['url'])
         elif images is not None and len(images) > 0:
