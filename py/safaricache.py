@@ -56,6 +56,11 @@ class SafariCache:
                     return u"{0}".format(url).replace('&amp;', '&')
         return None
 
+    def clean_description(self):
+        # eliminate 'safari box' from description
+        self._description = re.sub(r'<div style="[^"]*border:[^"]*background:[^"]*">.*?</div>', '',
+                                   self._description, flags=re.MULTILINE | re.DOTALL)
+
     def to_string(self):
         return u"{0}: {1}, {2}".format(self._code, self._name, self._preview_image)
 
@@ -67,5 +72,6 @@ def load_caches(json_data):
         if cache_data is not None:
             cache = SafariCache()
             cache.load_from_json(cache_data)
+            cache.clean_description()
             caches.append(cache)
     return caches
