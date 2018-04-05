@@ -1,0 +1,15 @@
+<div class="col-md-4">
+    <div class="card mb-4 box-shadow">
+        <img class="card-img-top" src="##IMG##">
+        <div class="card-body">
+            <h5 class="card-title">##NAME##</h5>
+            <p class="card-text">
+                ##OCCODE## | ##OWNER## | ##DATE##<br />
+                ##FINDS## | ##FINDS2##<br />
+                ##DESCRIPTION##</p>
+                <a href="https://www.opencaching.de/##OCCODE##" class="btn btn-primary">Opencaching.de</a>
+                <a href="##OCCODE##" class="btn btn-primary">Karte</a>
+            </p>
+        </div>
+    </div>
+</div>

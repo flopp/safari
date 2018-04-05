@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Safari-Caches - Log-Karte</title>
+    <title>Safari-Caches - Cache-Liste</title>
     <meta charset="utf-8">
-    
+
     <link rel="alternate" type="application/atom+xml" title="Safari-Caches Feed" href="https://safari.flopp.net/feed.xml" />
     <link rel="author" href="https://plus.google.com/100782631618812527586" />
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- external stuff from CDN -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/LEAFLET_VERSION/leaflet.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/BOOTSTRAP_VERSION/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/FONTAWESOME_VERSION/css/font-awesome.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@LEAFLET_MARKER_CLUSTER_VERSION/dist/MarkerCluster.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@LEAFLET_MARKER_CLUSTER_VERSION/dist/MarkerCluster.Default.css" />
-    
+
     <!-- local stuff -->
     <link rel="stylesheet" href="css/main.css?cachebuster=TSTAMP" />
 </head>
@@ -31,10 +28,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="index.html">Cache-Karte</a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="#">Log-Karte</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="list.html">Cache-Liste</a>
                     </li>
                     <li class="nav-item">
@@ -44,22 +41,9 @@
             </div>
         </nav>
     </header>
-    
-    <div id="map"></div>
-    
-    <!-- PIWIK-CODE -->
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/JQUERY_VERSION/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/LEAFLET_VERSION/leaflet.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/BOOTSTRAP_VERSION/js/bootstrap.min.js"></script>
-    <script src="https://unpkg.com/leaflet.markercluster@LEAFLET_MARKER_CLUSTER_VERSION/dist/leaflet.markercluster.js"></script>
-    <script src="js/log-data.js?cachebuster=TSTAMP"></script>
-    <script src="js/logs.js?cachebuster=TSTAMP"></script>
-    
-    <script>
-    $(document).ready(function() {
-        LogHeatmap.init();
-    });
-    </script>
-</body>
-</html>
+
+    <main>
+        <div class="container">
+            ##PAGINATION##
+            <div class="row">
+

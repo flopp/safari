@@ -11,6 +11,7 @@ from thumbnailer import Thumbnailer
 from downloader import Downloader
 from sidebargen import create_sidebar
 from dbgen import create_db, collect_logs
+from create_list import createlist
 from feedgen import create_feed
 
 
@@ -111,14 +112,11 @@ def main():
     print("-- scaling images...")
     thumbnailer.run()
 
-    print("-- creating db...")
+    print("-- creating files...")
     create_db(caches, ".cache/safari.sqlite")
     collect_logs(caches, ".cache/log-data.js")
-
-    print("-- create feed...")
+    createlist(caches, 30)
     create_feed(caches, ".cache/feed.xml")
-
-    print("-- creating sidebar...")
     create_sidebar(caches, "static/index.html", ".cache/index.html")
 
 

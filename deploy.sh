@@ -76,6 +76,7 @@ cp -a ${C}/index.html ${D}
 cp -a ${C}/log-data.js ${D}/js
 cp -a ${C}/small/* ${D}/img/small
 cp -a ${C}/safari.sqlite ${D}/db
+cp -a ${C}/list*.html ${D}
 
 # create base files
 cp -a static/safaridb.php ${D}
@@ -85,9 +86,9 @@ cp -a static/info.html ${D}
 cp -a js/*.js ${D}/js
 cp -a css/*.css ${D}/css
 
-insert_versions ${D}/index.html
-insert_versions ${D}/info.html
-insert_versions ${D}/logs.html
+for HTML in ${D}/*.html ; do
+    insert_versions ${HTML}
+done
 
 cp -a static/.htaccess ${D}
 cp -a .private/google* ${D}
