@@ -13,6 +13,7 @@ if [ ! -x $PYTHON ] ; then
     exit 1
 fi
 
+TIMESTAMP=$(date "+%F %T")
 CACHEBUSTER=$(date +%s)
 BOOTSTRAP_VERSION=4.0.0
 FONTAWESOME_VERSION=4.7.0
@@ -24,7 +25,8 @@ LEAFLET_MARKER_CLUSTER_VERSION=1.3.0
 
 function insert_versions() {
     sed -i \
-        -e "s/TSTAMP/${CACHEBUSTER}/g" \
+        -e "s/##CACHEBUSTER##/${CACHEBUSTER}/g" \
+        -e "s/##LASTUPDATE##/${TIMESTAMP}/g" \
         -e "s/BOOTSTRAP_VERSION/${BOOTSTRAP_VERSION}/g" \
         -e "s/JQUERY_VERSION/${JQUERY_VERSION}/g" \
         -e "s/JQUERY_SCROLLTO_VERSION/${JQUERY_SCROLLTO_VERSION}/g" \

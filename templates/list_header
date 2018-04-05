@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Safari-Caches - Cache-Liste</title>
     <meta charset="utf-8">
+    <title>Safari-Caches - Cache-Liste</title>
+    <meta name="description" content="Eine Liste aller Safari-Caches bei Opencaching.de." />
+
 
     <link rel="alternate" type="application/atom+xml" title="Safari-Caches Feed" href="https://safari.flopp.net/feed.xml" />
     <link rel="author" href="https://plus.google.com/100782631618812527586" />
@@ -16,7 +18,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/FONTAWESOME_VERSION/css/font-awesome.min.css" rel="stylesheet" />
 
     <!-- local stuff -->
-    <link rel="stylesheet" href="css/main.css?cachebuster=TSTAMP" />
+    <link rel="stylesheet" href="css/main.css?cachebuster=##CACHEBUSTER##" />
 </head>
 <body>
     <header>
@@ -31,10 +33,10 @@
                         <a class="nav-link" href="index.html">Cache-Karte</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Log-Karte</a>
+                        <a class="nav-link" href="logs.html">Log-Karte</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="list.html">Cache-Liste</a>
+                        <a class="nav-link" href="#">Cache-Liste</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="info.html">Info</a>

@@ -11,6 +11,7 @@ NO_IMAGE_DATA = \
     "3E%3Crect%20width%3D%22500%22%20height%3D%22500%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3C" \
     "text%20x%3D%22100%22%20y%3D%22250%22%3EKein%20Bild%20%3A(%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
 
+
 def create_file_name(index, count):
     if index < 0 or index >= count:
         return None

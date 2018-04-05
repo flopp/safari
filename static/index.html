@@ -18,10 +18,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/LEAFLET_AWESOME_MARKERS_VERSION/leaflet.awesome-markers.css" />
 
     <!-- sidebar-v2 -->
-    <link rel="stylesheet" href="ext/leaflet-sidebar-v2/leaflet-sidebar.min.css?t=TSTAMP" />
+    <link rel="stylesheet" href="ext/leaflet-sidebar-v2/leaflet-sidebar.min.css?cachebuster=##CACHEBUSTER##" />
 
     <!-- local -->
-    <link rel="stylesheet" href="css/main.css?cachebuster=TSTAMP" />
+    <link rel="stylesheet" href="css/main.css?cachebuster=##CACHEBUSTER##" />
 </head>
 
 <body>
@@ -97,6 +97,20 @@
         </div>
     </div>
 
+    <footer class="footer bg-dark">
+        <div class="container">
+            <span class="text-muted">
+                <span class="only-large">Ein Projekt von <a href="https://www.florian-pigorsch.de/" target="_blank" title="Florian Pigorsch"><i class="fa fa-user"></i> Florian Pigorsch</a>&nbsp;|&nbsp;
+                Quellcode: <a href="https://github.com/flopp/safari" target="_blank"><i class="fa fa-github"></i> github.com/flopp/safari</a>&nbsp;|&nbsp;
+                Daten: <a href="https://www.opencaching.de/" target="_blank">Opencaching.de</a>&nbsp;|&nbsp;
+                Update: ##LASTUPDATE##</span>
+                <span class="only-small"><a href="https://www.florian-pigorsch.de/" target="_blank" title="Florian Pigorsch"><i class="fa fa-user"></i> Florian Pigorsch</a>&nbsp;|&nbsp;
+                <a href="https://www.opencaching.de/" target="_blank">OC.de</a>&nbsp;|&nbsp;
+                ##LASTUPDATE##</span>
+            </span>
+        </div>
+    </footer>
+
 <!-- PIWIK-CODE -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/JQUERY_VERSION/jquery.min.js"></script>
@@ -105,11 +119,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/BOOTSTRAP_VERSION/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/LEAFLET_AWESOME_MARKERS_VERSION/leaflet.awesome-markers.min.js"></script>
     
-    <script src="ext/leaflet-sidebar-v2/leaflet-sidebar.js?t=TSTAMP"></script>
-    <script src="ext/bootstrap-lightbox/ekko-lightbox.min.js?t=TSTAMP"></script>
+    <script src="ext/leaflet-sidebar-v2/leaflet-sidebar.js?cachebuster=##CACHEBUSTER##"></script>
+    <script src="ext/bootstrap-lightbox/ekko-lightbox.min.js?cachebuster=##CACHEBUSTER##"></script>
     
-    <script src="js/url.js?cachebuster=TSTAMP"></script>
-    <script src="js/main.js?cachebuster=TSTAMP"></script>
+    <script src="js/url.js?cachebuster=##CACHEBUSTER##"></script>
+    <script src="js/main.js?cachebuster=##CACHEBUSTER##"></script>
     
     <script>
     $(document).ready(function() {

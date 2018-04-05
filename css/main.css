@@ -3,18 +3,28 @@ html, body {
 }
 
 #map {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 56px;
-  bottom: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 56px;
+    bottom: 32px;
 }
 
 main {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 56px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 56px;
+    bottom: 32px;
+    overflow-y: scroll;
+}
+
+footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 32px;
 }
 
 main > .container {
@@ -28,11 +38,13 @@ h2 {
 @media (min-width: 768px) {
     .sidebar {
         top: 64px;
+        bottom: 40px;
     }
 }
 @media (max-width: 767px) {
     .sidebar {
         top: 56px;
+        bottom: 32px;
     }
 }
 
@@ -41,10 +53,12 @@ h2 {
 }
 
 .hidden {
-  display: none; }
+     display: none;
+}
 
 .cache {
-  cursor: hand; }
+    cursor: hand;
+}
 
 .status-available > span {
   text-decoration: none; }
@@ -76,18 +90,19 @@ h2 {
   flex-wrap: wrap; }
 
 .logimages > a {
-  width: 115px;
-  height: 115px;
-  margin-right: 2px;
-  margin-bottom: 2px;
-  display: inline-block;
-  text-align: center; }
+    width: 115px;
+    height: 115px;
+    margin-right: 2px;
+    margin-bottom: 2px;
+    display: inline-block;
+    text-align: center;
+}
 
 .logimages > a > img {
-  vertical-align: middle; }
+    vertical-align: middle; }
 
 .sidebar-close > i {
-  line-height: 40px;
+    line-height: 40px;
 }
 
 .box-shadow {
@@ -95,14 +110,18 @@ h2 {
 }
 
 @media (max-width: 767px) {
-  .only-small {
-    display: inherit !important; }
-
-  .only-large {
-    display: none !important; } }
+    .only-small {
+        display: inherit !important;
+    }
+    .only-large {
+        display: none !important;
+    }
+}
 @media (min-width: 768px) {
-  .only-small {
-    display: none !important; }
-
-  .only-large {
-    display: inherit !important; } }
+    .only-small {
+        display: none !important;
+    }
+    .only-large {
+        display: inherit !important;
+    }
+}
