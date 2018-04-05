@@ -1,10 +1,6 @@
 import datetime
 import os
-
-
-def load_template(file_name):
-    with open('templates/{}'.format(file_name), "r") as f:
-        return f.read()
+from utilities import load_template
 
 
 def create_sidebar(caches, index_template, target):

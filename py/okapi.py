@@ -1,4 +1,5 @@
 import requests
+from utilities import chunks
 
 
 class Okapi:
@@ -25,7 +26,7 @@ class Okapi:
         print("-- downloading cache details...")
         url = self._base_url + 'services/caches/geocaches'
         caches = {}
-        for code_chunk in self.chunks(codes, 100):
+        for code_chunk in chunks(codes, 100):
             data = {
                 'consumer_key': self._consumer_key,
                 'cache_codes': '|'.join(code_chunk),
@@ -49,10 +50,3 @@ class Okapi:
         headers = {'User-agent': self._user_agent}
         r = requests.post(url, data=data, headers=headers)
         return r.json()
-
-    @staticmethod
-    def chunks(l, n):
-        """ Yield successive n-sized chunks from l.
-        """
-        for i in range(0, len(l), n):
-            yield l[i:i+n]

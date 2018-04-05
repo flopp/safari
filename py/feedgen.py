@@ -1,17 +1,13 @@
 import os
 import datetime
-
-
-def load_feed_template(file_name):
-    with open('templates/{}'.format(file_name), "r") as f:
-        return f.read()
+from utilities import load_template
 
 
 def create_feed(caches, file_name):
-    header_template = load_feed_template('atomfeed_header')
-    item_template = load_feed_template('atomfeed_item')
-    img_template = load_feed_template('atomfeed_item_image')
-    footer_template = load_feed_template('atomfeed_footer')
+    header_template = load_template('atomfeed_header')
+    item_template = load_template('atomfeed_item')
+    img_template = load_template('atomfeed_item_image')
+    footer_template = load_template('atomfeed_footer')
     with open(file_name, 'w') as f:
         f.write(header_template.replace('##DATE##', datetime.datetime.now().isoformat()))
         for cache in caches:
