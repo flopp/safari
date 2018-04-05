@@ -14,6 +14,7 @@ if [ ! -x $PYTHON ] ; then
 fi
 
 TIMESTAMP=$(date "+%F %T")
+TIMESTAMPSMALL=$(date "+%F")
 CACHEBUSTER=$(date +%s)
 BOOTSTRAP_VERSION=4.0.0
 FONTAWESOME_VERSION=4.7.0
@@ -27,6 +28,7 @@ function insert_versions() {
     sed -i \
         -e "s/##CACHEBUSTER##/${CACHEBUSTER}/g" \
         -e "s/##LASTUPDATE##/${TIMESTAMP}/g" \
+        -e "s/##LASTUPDATESMALL##/${TIMESTAMPSMALL}/g" \
         -e "s/BOOTSTRAP_VERSION/${BOOTSTRAP_VERSION}/g" \
         -e "s/JQUERY_VERSION/${JQUERY_VERSION}/g" \
         -e "s/JQUERY_SCROLLTO_VERSION/${JQUERY_SCROLLTO_VERSION}/g" \

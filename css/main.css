@@ -25,6 +25,8 @@ footer {
     right: 0;
     bottom: 0;
     height: 32px;
+    line-height: 32px;
+    vertical-align: middle;
 }
 
 main > .container {
