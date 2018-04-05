@@ -1,8 +1,7 @@
-#!/usr/bin/env python3
-
 import json
 import re
 import os.path
+
 from authdata import OC_OKAPI_KEY, OC_USERNAME, OC_PASSWORD, OC_QUERYID
 from okapi import Okapi
 from query import download_query
@@ -15,6 +14,7 @@ from dbgen import create_db, collect_logs
 from feedgen import create_feed
 
 
+USER_AGENT = 'safari-map [https://safari.flopp.net/]'
 MANUAL_CACHES_FILE = "./static/manual-caches.txt"
 CACHE_DIR = "./.cache"
 SIZE_BIG = 500
@@ -37,7 +37,7 @@ def mkdir(d):
 
 
 def main():
-    okapi = Okapi(OC_OKAPI_KEY)
+    okapi = Okapi(OC_OKAPI_KEY, user_agent=USER_AGENT)
 
     mkdir(CACHE_DIR)
     mkdir("{}/json".format(CACHE_DIR))
@@ -60,7 +60,7 @@ def main():
                         oc_codes.append(oc_code)
         except IOError:
             pass
-        
+
         print("-> codes: {}".format(len(oc_codes)))
         fields = ['code', 'name', 'location', 'status', 'url', 'owner', 'founds', 'date_hidden', 'date_created',
                   'short_description', 'description', 'images', 'preview_image', 'internal_id']
@@ -92,7 +92,7 @@ def main():
     print("-- logs without coordinates: {}/{}".format(logs_without_coords, total_logs))
 
     print("-- downloading missing images...")
-    downloader = Downloader(threads=4, user_agent='safari-map [https://safari.flopp.net/]')
+    downloader = Downloader(threads=4, user_agent=USER_AGENT)
     thumbnailer = Thumbnailer(threads=4)
     for cache in caches:
         if cache._preview_image is not None:

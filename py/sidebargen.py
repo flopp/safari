@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import datetime
 import os
 
@@ -15,7 +13,7 @@ def create_sidebar(caches, index_template, target):
     img_template = load_template('sidebar_img')
     desc_template = load_template('sidebar_desc')
     footer_template = load_template('sidebar_footer')
-    
+
     index_prefix = []
     index_suffix = []
     with open(index_template, 'r') as f:
@@ -27,7 +25,7 @@ def create_sidebar(caches, index_template, target):
                 index_prefix.append(line)
             else:
                 index_suffix.append(line)
-    
+
     with open(target, 'w') as f:
         for line in index_prefix:
             f.write(line)

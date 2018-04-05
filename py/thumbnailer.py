@@ -34,6 +34,7 @@ class Thumbnailer:
     def _scale_image(self, source_file, target_file, max_dim):
         blur_size = int(max_dim/16)
         assert(blur_size in self._blur_filters)
+        # noinspection PyBroadException
         try:
             with open(source_file, "rb") as f:
                 image = Image.open(f)
@@ -64,5 +65,5 @@ class Thumbnailer:
                 return True, 'SCALING: success {0} -> {1}'.format(source_file, target_file)
         except IOError:
             return False, 'SCALING: failed {0}'.format(source_file)
-        except:
-            return False, 'SCALING: failed2 {0}'.format(source_file)
+        except Exception as e:
+            return False, 'SCALING: failed2 {0}; exception: {1}'.format(source_file, e)

@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import re
 import dateutil.parser
 
@@ -75,13 +73,13 @@ class SafariLog:
             print(text)
             print(self._comment)
             return
-    
+
     def fix_urls(self):
         self._user_url = re.sub(r'^http:', "https:", self._user_url)
         for img in self._images:
             img['url'] = re.sub(r'^http:', "https:", img['url'])
             img['thumb_url'] = re.sub(r'^http:', "https:", img['thumb_url'])
-    
+
     @staticmethod
     def to_float(s):
         s2 = ""

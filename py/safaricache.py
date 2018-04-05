@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import re
 import dateutil.parser
 
@@ -18,7 +16,7 @@ class SafariCache:
     _founds = 0
     _date = None
     _logs = []
-    
+
     def load_from_json(self, json_data):
         self._code = json_data['code']
         self._internal_id = json_data['internal_id']
@@ -33,7 +31,7 @@ class SafariCache:
             self.determine_image(json_data['preview_image'], json_data['images'], json_data['description'])
         self._founds = int(json_data['founds'])
         self._date = dateutil.parser.parse(json_data['date_created'])
-    
+
     @staticmethod
     def determine_image(preview_image, images, description):
         if preview_image is not None:
@@ -56,9 +54,8 @@ class SafariCache:
                 url = match.group(1)
                 if url.find('resource2') is -1 and url.find('tinymce') is -1:
                     return u"{0}".format(url).replace('&amp;', '&')
-        
         return None
-        
+
     def to_string(self):
         return u"{0}: {1}, {2}".format(self._code, self._name, self._preview_image)
 
