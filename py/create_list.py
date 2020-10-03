@@ -17,7 +17,7 @@ def create_file_name(index, count):
         return None
     elif index == 0:
         return 'list.html'
-    return 'list{}.html'.format(index)
+    return f'list{index}.html'
 
 
 def create_pagination(index, count):
@@ -62,15 +62,15 @@ def create_pagination(index, count):
     return r
 
 
-def create_cache_item(template, cache):
+def create_cache_item(template, cache, target_dir):
     desc = ''
     if cache._short_description is not None:
         desc = cache._short_description
     img = NO_IMAGE_DATA
-    thumb = '.cache/big/{}.jpg'.format(cache._code)
+    thumb = os.path.join(target_dir, "big", f"{cache._code}.jpg")
     if os.path.exists(thumb):
-        img = 'img/big/{}.jpg'.format(cache._code)
-    finds = '{} Funde'.format(cache._founds)
+        img = f'img/big/{cache._code}.jpg'
+    finds = f'{cache._founds} Funde'
     if cache._founds is 0:
         finds = 'keine Funde'
     elif cache._founds is 1:
@@ -79,7 +79,7 @@ def create_cache_item(template, cache):
     for log in cache._logs:
         if log._coordinates:
             with_coords += 1
-    finds2 = '{} Logs mit Koordinaten'.format(with_coords)
+    finds2 = f'{with_coords} Logs mit Koordinaten'
     if with_coords == 0:
         finds2 = 'keine Logs mit Koordinaten'
     elif with_coords == 1:
@@ -95,23 +95,23 @@ def create_cache_item(template, cache):
         .replace('##DESCRIPTION##', desc)
 
 
-def createlist(caches, chunk_size):
+def createlist(caches, chunk_size, target_dir):
     header_template = load_template('list_header')
     footer_template = load_template('list_footer')
     item_template = load_template('list_item')
 
     chunk_count = int(math.ceil(len(caches) / chunk_size))
     for chunk_index, chunk_caches in enumerate(chunks(caches, chunk_size)):
-        target_file_name = '.cache/' + create_file_name(chunk_index, chunk_count)
+        target_file_name = os.path.join(target_dir, create_file_name(chunk_index, chunk_count))
         pagination = create_pagination(chunk_index, chunk_count)
         with open(target_file_name, 'w') as f:
             prev = create_file_name(chunk_index - 1, chunk_count)
             next = create_file_name(chunk_index + 1, chunk_count)
             f.write(header_template
-                    .replace('##PREVLINK##', '<link rel="prev" href="{}">'.format(prev) if prev else '')
-                    .replace('##NEXTLINK##', '<link rel="next" href="{}">'.format(next) if next else '')
+                    .replace('##PREVLINK##', f'<link rel="prev" href="{prev}">' if prev else '')
+                    .replace('##NEXTLINK##', f'<link rel="next" href="{next}">' if next else '')
                     .replace('##PAGINATION##', pagination)
                     )
             for cache in chunk_caches:
-                f.write(create_cache_item(item_template, cache))
+                f.write(create_cache_item(item_template, cache, target_dir))
             f.write(footer_template.replace('##PAGINATION##', pagination))

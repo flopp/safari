@@ -17,7 +17,7 @@
         </div>
     </footer>
 
-    <!-- PIWIK-CODE -->
+    <!-- TRACKER-CODE -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/JQUERY_VERSION/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/BOOTSTRAP_VERSION/js/bootstrap.min.js"></script>

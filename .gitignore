@@ -4,4 +4,4 @@
 .private
 env
 py/authdata.py
-py/__pycache__
+__pycache__

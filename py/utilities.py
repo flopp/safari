@@ -1,5 +1,7 @@
+import os
+
 def load_template(file_name):
-    with open('templates/{}'.format(file_name), "r") as f:
+    with open(os.path.join('templates', file_name), "r") as f:
         return f.read()
 
 

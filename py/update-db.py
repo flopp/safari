@@ -1,6 +1,7 @@
+import argparse
 import json
+import os
 import re
-import os.path
 
 from authdata import OC_OKAPI_KEY, OC_USERNAME, OC_PASSWORD, OC_QUERYID
 from okapi import Okapi
@@ -17,7 +18,6 @@ from feedgen import create_feed
 
 USER_AGENT = 'safari-map [https://safari.flopp.net/]'
 MANUAL_CACHES_FILE = "./static/manual-caches.txt"
-CACHE_DIR = "./.cache"
 SIZE_BIG = 500
 SIZE_SMALL = 175
 
@@ -32,21 +32,16 @@ def load_json(file_name):
         return json.load(f)
 
 
-def mkdir(d):
-    if not os.path.isdir(d):
-        os.mkdir(d)
-
-
-def main():
+def main(cache_dir):
     okapi = Okapi(OC_OKAPI_KEY, user_agent=USER_AGENT)
 
-    mkdir(CACHE_DIR)
-    mkdir("{}/json".format(CACHE_DIR))
-    mkdir("{}/orig".format(CACHE_DIR))
-    mkdir("{}/small".format(CACHE_DIR))
-    mkdir("{}/big".format(CACHE_DIR))
+    os.makedirs(cache_dir, exist_ok=True)
+    os.makedirs(os.path.join(cache_dir, "json"), exist_ok=True)
+    os.makedirs(os.path.join(cache_dir, "orig"), exist_ok=True)
+    os.makedirs(os.path.join(cache_dir, "small"), exist_ok=True)
+    os.makedirs(os.path.join(cache_dir, "big"), exist_ok=True)
 
-    file_name = "{}/json/caches.json".format(CACHE_DIR)
+    file_name = os.path.join(cache_dir, "json", "caches.json")
     if os.path.isfile(file_name):
         json_data = load_json(file_name)
     else:
@@ -77,7 +72,7 @@ def main():
     total_logs = 0
     logs_without_coords = 0
     for cache in caches:
-        file_name = "{}/json/{}-logs.json".format(CACHE_DIR, cache._code)
+        file_name = os.path.join(cache_dir, "json", f"{cache._code}-logs.json")
         if os.path.isfile(file_name):
             json_data = load_json(file_name)
         else:
@@ -101,11 +96,11 @@ def main():
             m = re.match('^.*\.([^.\?]+)(\?.*)?$', cache._preview_image)
             if m:
                 extension = m.group(1)
-            raw_image = '{}/{}/{}.{}'.format(CACHE_DIR, "orig", cache._code, extension)
+            raw_image = '{}/{}/{}.{}'.format(cache_dir, "orig", cache._code, extension)
             downloader.add_job(cache._preview_image, raw_image)
-            thumb_small = '{}/{}/{}.jpg'.format(CACHE_DIR, "small", cache._code)
+            thumb_small = '{}/{}/{}.jpg'.format(cache_dir, "small", cache._code)
             thumbnailer.add_job(raw_image, thumb_small, SIZE_SMALL)
-            thumb_big = '{}/{}/{}.jpg'.format(CACHE_DIR, "big", cache._code)
+            thumb_big = '{}/{}/{}.jpg'.format(cache_dir, "big", cache._code)
             thumbnailer.add_job(raw_image, thumb_big, SIZE_BIG)
     downloader.run()
 
@@ -113,12 +108,21 @@ def main():
     thumbnailer.run()
 
     print("-- creating files...")
-    create_db(caches, ".cache/safari.sqlite")
-    collect_logs(caches, ".cache/log-data.js")
-    createlist(caches, 30)
-    create_feed(caches, ".cache/feed.xml")
-    create_sidebar(caches, "static/index.html", ".cache/index.html")
+    create_db(caches, os.path.join(cache_dir, "safari.sqlite"))
+    collect_logs(caches, os.path.join(cache_dir, "log-data.js"))
+    createlist(caches, 30, cache_dir)
+    create_feed(caches, os.path.join(cache_dir, "feed.xml"))
+    create_sidebar(caches, "static/index.html", os.path.join(cache_dir, "index.html"), cache_dir)
 
 
 if __name__ == '__main__':
-    main()
+    args_parser = argparse.ArgumentParser()
+    args_parser.add_argument(
+        "--cache-dir",
+        dest="cache_dir",
+        metavar="DIR",
+        type=str
+    )
+    args = args_parser.parse_args()
+
+    main(args.cache_dir)

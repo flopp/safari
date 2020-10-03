@@ -39,7 +39,7 @@ function insert_versions() {
         $1
     if [ -f .private/piwik-code ] ; then
         echo "inserting PIWIK code"
-        sed -i '/<!-- PIWIK-CODE -->/ {
+        sed -i '/<!-- TRACKER-CODE -->/ {
             r .private/piwik-code
             g
             }' $1
