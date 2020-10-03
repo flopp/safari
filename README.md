@@ -1,4 +1,3 @@
-[![Build Status](https://travis-ci.org/flopp/safari.svg?branch=master)](https://travis-ci.org/flopp/safari)
 [![License MIT](https://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](https://github.com/flopp/safari/blob/master/LICENSE)
 
 # Safari-Map
@@ -19,4 +18,4 @@ See [https://safari.flopp.net/](https://safari.flopp.net/) for an online demo.
 *  [Leaflet Marker Cluster](https://github.com/Leaflet/Leaflet.markercluster)
 
 ## License
-[MIT](https://github.com/flopp/safari/blob/master/LICENSE) &copy; 2017-2018 Florian Pigorsch
+[MIT](https://github.com/flopp/safari/blob/master/LICENSE) &copy; 2017-2020 Florian Pigorsch
