@@ -218,10 +218,11 @@ App.highlight = function (cache_code) {
     if (div) {
         div.addClass('active');
         div = this.detailsDiv(cache_code).show();
-        imgs = div.find("img");
-        if (imgs.length === 1) {
-            imgs[0].attr("src", imgs[0].data("src"));
-        }
+        document.querySelectorAll('#cache' + cache_code + ' > .details > img').forEach((img) => {
+            if ("src" in img.dataset) {
+                img.setAttribute("src", img.dataset.src);
+            }
+        });
         history.pushState({}, '', cache_code);
     } else {
         history.pushState({}, '', '');
