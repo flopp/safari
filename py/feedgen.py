@@ -9,8 +9,12 @@ def create_feed(caches, file_name):
     img_template = load_template('atomfeed_item_image')
     footer_template = load_template('atomfeed_footer')
     with open(file_name, 'w') as f:
+        count = 30
         f.write(header_template.replace('##DATE##', datetime.datetime.now().isoformat()))
         for cache in caches:
+            count = count - 1
+            if count == 0:
+                break
             it = item_template
             it = it.replace('##CODE##', cache._code)
             it = it.replace('##DATE##', cache._date.isoformat())
