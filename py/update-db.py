@@ -79,6 +79,7 @@ def main(cache_dir):
             fields = ['uuid', 'date', 'user', 'type', 'comment', 'images', 'internal_id']
             json_data = okapi.get_logs(cache._code, fields)
             store_json(file_name, json_data)
+        print(f"CACHE {cache._code}")
         cache._logs = load_logs(json_data)
 
         for log in cache._logs:

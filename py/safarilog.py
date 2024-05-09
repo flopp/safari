@@ -32,16 +32,19 @@ class SafariLog:
         text = text.replace(",", ".")
         text = re.sub(r'\s*\.\s*', '.', text)
         text = re.sub(r'&[^&;]+;', " ", text)
-        text = text.replace("&deg;", " ")
         tt = ""
 
         last_space = True
         for c in text:
-            if c.isalnum() or c == ".":
-                tt += c
-                last_space = False
-            elif c == "o":
+            if c == "º":
+                if not last_space:
+                    tt += " "
+                    last_space = True
+            elif c == "o" or c == "o":
                 tt += "e"
+                last_space = False
+            elif c.isalnum() or c == ".":
+                tt += c
                 last_space = False
             elif not last_space:
                 tt += " "
@@ -51,6 +54,8 @@ class SafariLog:
         try:
             hdms_re = r'([ns])\s*(\d+)\s+(\d+)\s+(\d[\d\.]*)\s*([ew])\s*(\d+)\s+(\d+)\s+(\d[\d\.]*)'
             hdm_re = r'([ns])\s*(\d+)\s+(\d[\d\.]*)\s*([ew])\s*(\d+)\s+(\d[\d\.]*)'
+            dmh_re = r'(\d+)\s+(\d[\d\.]*)\s*([ns])\s+(\d+)\s+(\d[\d\.]*)\s*([ew])'
+            dm_re = r'[^\d](\d+)\s+(\d[\d\.]*)\s+(\d+)\s+(\d[\d\.]*)[^\d]'
             hd_re = r'([ns])\s*(\d[\d\.]*)\s*([ew])\s*(\d[\d\.]*)'
 
             m = re.search(hdms_re, text)
@@ -63,6 +68,16 @@ class SafariLog:
                 self._coordinates = self.parse_hdm(m.groups())
                 if self._coordinates:
                     return
+            m = re.search(dmh_re, text)
+            if m:
+                self._coordinates = self.parse_dmh(m.groups())
+                if self._coordinates:
+                    return
+            m = re.search(dm_re, text)
+            if m:
+                self._coordinates = self.parse_dm(m.groups())
+                if self._coordinates:
+                    return
             m = re.search(hd_re, text)
             if m:
                 self._coordinates = self.parse_hd(m.groups())
@@ -73,6 +88,12 @@ class SafariLog:
             print(text)
             print(self._comment)
             return
+        digits = 0
+        for c in text:
+            if c.isdigit():
+                digits +=1
+        if digits >= 8:
+            print(f"NO COORDINATES {self._user}\n{text}")
 
     def fix_urls(self):
         self._user_url = re.sub(r'^http:', "https:", self._user_url)
@@ -114,6 +135,28 @@ class SafariLog:
         lng = self.to_float(hdm[4]) + self.to_float(hdm[5])/60.0
         if hdm[3] == "w":
             lng = -lng
+        if self.validate_coords(lat, lng):
+            return "{}|{}".format(lat, lng)
+        else:
+            return None
+    
+    def parse_dmh(self, dmh):
+        # DD MM N DD MM E
+        lat = self.to_float(dmh[0]) + self.to_float(dmh[1])/60.0
+        if dmh[2] == "s":
+            lat = -lat
+        lng = self.to_float(dmh[3]) + self.to_float(dmh[4])/60.0
+        if dmh[5] == "w":
+            lng = -lng
+        if self.validate_coords(lat, lng):
+            return "{}|{}".format(lat, lng)
+        else:
+            return None
+
+    def parse_dm(self, dm):
+        # DD MM DD MM
+        lat = self.to_float(dm[0]) + self.to_float(dm[1])/60.0
+        lng = self.to_float(dm[2]) + self.to_float(dm[3])/60.0
         if self.validate_coords(lat, lng):
             return "{}|{}".format(lat, lng)
         else:
