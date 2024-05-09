@@ -2,16 +2,7 @@
 
 set -euo pipefail
 
-for PYTHON in /usr/bin/python3 /usr/local/bin/python3 CANNOT_FIND_PYTHON ; do
-    if [ -x $PYTHON ] ; then
-        break
-    fi
-done
-
-if [ ! -x $PYTHON ] ; then
-    echo "cannot find python"
-    exit 1
-fi
+PYTHON=.env/bin/python
 
 TIMESTAMP=$(date "+%F %T")
 TIMESTAMPSMALL=$(date "+%F")
@@ -37,13 +28,6 @@ function insert_versions() {
         -e "s/LEAFLET_AWESOME_MARKERS_VERSION/${LEAFLET_AWESOME_MARKERS_VERSION}/g" \
         -e "s/LEAFLET_MARKER_CLUSTER_VERSION/${LEAFLET_MARKER_CLUSTER_VERSION}/g" \
         $1
-    if [ -f .private/piwik-code ] ; then
-        echo "inserting PIWIK code"
-        sed -i '/<!-- TRACKER-CODE -->/ {
-            r .private/piwik-code
-            g
-            }' $1
-    fi
 }
 
 C=".cache"
@@ -74,7 +58,7 @@ echo "$(date) - UPDATING CACHES..."
 # update thumbnails, create html files
 
 ln -fs $(pwd)/.private/authdata.py py
-$PYTHON py/update-db.py
+$PYTHON py/update-db.py --cache-dir ${C}
 cp -a ${C}/feed.xml ${D}
 cp -a ${C}/index.html ${D}
 cp -a ${C}/log-data.js ${D}/js
@@ -96,7 +80,6 @@ for HTML in ${D}/*.html ; do
 done
 
 cp -a static/.htaccess ${D}
-cp -a .private/google* ${D}
 
 
 echo "$(date) - UPDATING THIRD PARTY LIBS..."

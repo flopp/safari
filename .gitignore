@@ -1,7 +1,9 @@
 .cache
 .deploy
+.env
 .idea
 .private
+.DS_Store
 env
 py/authdata.py
 __pycache__
