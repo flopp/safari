@@ -55,8 +55,8 @@ class Thumbnailer:
                     small_w = int((w * max_dim) / h)
                     big_h = int((h * max_dim) / w)
 
-                image_small = image.resize((small_w, small_h), Image.ANTIALIAS)
-                image_big = image.resize((big_w, big_h), Image.ANTIALIAS)\
+                image_small = image.resize((small_w, small_h), Image.Resampling.LANCZOS)
+                image_big = image.resize((big_w, big_h), Image.Resampling.LANCZOS)\
                     .filter(self._blur_filters[blur_size])
                 base = Image.new('RGB', (max_dim, max_dim))
                 base.paste(image_big, (int((max_dim - big_w)/2), int((max_dim - big_h)/2)))
