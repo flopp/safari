@@ -52,7 +52,7 @@ class SafariCache:
             ex = '<img [^>]*src="([^"]+)"'
             for match in re.finditer(ex, description):
                 url = match.group(1)
-                if url.find('resource2') is -1 and url.find('tinymce') is -1:
+                if url.find('resource2') < 0 and url.find('tinymce') < 0:
                     return u"{0}".format(url).replace('&amp;', '&')
         return None
 
