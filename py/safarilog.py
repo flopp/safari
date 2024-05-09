@@ -31,7 +31,7 @@ class SafariLog:
         text = re.sub(r'<[^>]*>', " ", text)
         text = text.replace(",", ".")
         text = re.sub(r'\s*\.\s*', '.', text)
-        text = re.sub(r'&[^&;];', " ", text)
+        text = re.sub(r'&[^&;]+;', " ", text)
         text = text.replace("&deg;", " ")
         tt = ""
 
