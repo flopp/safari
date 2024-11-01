@@ -6,7 +6,6 @@ from utilities import load_template
 def create_sidebar(caches, index_template, target, cache_dir):
     header_template = load_template('sidebar_header')
     item_template = load_template('sidebar_item')
-    img_template = load_template('sidebar_img')
     desc_template = load_template('sidebar_desc')
     footer_template = load_template('sidebar_footer')
 
@@ -57,11 +56,6 @@ def create_sidebar(caches, index_template, target, cache_dir):
                 desc = desc_template.replace('##TEXT##', cache._short_description)
             it = it.replace('##DESC##', desc)
 
-            img = ''
-            thumb = os.path.join(cache_dir, 'small', f'{cache._code}.jpg')
-            if os.path.exists(thumb):
-                img = img_template.replace('##URL##', f'img/small/{cache._code}.jpg')
-            it = it.replace('##IMG##', img)
             f.write(it)
         f.write(footer_template.replace('##DATE##', datetime.datetime.now().isoformat()))
         for line in index_suffix:

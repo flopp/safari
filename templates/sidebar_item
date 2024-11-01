@@ -4,7 +4,6 @@
     <span><span class="finds">##FINDS##</span> | <span class="finds">##FINDS2##</span></span><br />
     <div class="details">
         ##DESC##
-        ##IMG##
         <a class="btn btn-sm btn-light" href="##URL##" target="_blank">Zeige bei Opencaching.de</a>
     </div>
 </div>

@@ -218,11 +218,6 @@ App.highlight = function (cache_code) {
     if (div) {
         div.addClass('active');
         div = this.detailsDiv(cache_code).show();
-        document.querySelectorAll('#cache' + cache_code + ' > .details > img').forEach((img) => {
-            if ("src" in img.dataset) {
-                img.setAttribute("src", img.dataset.src);
-            }
-        });
         history.pushState({}, '', cache_code);
     } else {
         history.pushState({}, '', '');

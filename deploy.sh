@@ -49,9 +49,6 @@ fi
 mkdir -p ${D}/css
 mkdir -p ${D}/db
 mkdir -p ${D}/ext
-mkdir -p ${D}/img
-mkdir -p ${D}/img/big
-mkdir -p ${D}/img/small
 mkdir -p ${D}/js
 
 echo "$(date) - UPDATING CACHES..."
@@ -62,8 +59,6 @@ $PYTHON py/update-db.py --cache-dir ${C}
 cp -a ${C}/feed.xml ${D}
 cp -a ${C}/index.html ${D}
 cp -a ${C}/log-data.js ${D}/js
-cp -a ${C}/small/* ${D}/img/small
-cp -a ${C}/big/* ${D}/img/big
 cp -a ${C}/safari.sqlite ${D}/db
 cp -a ${C}/list*.html ${D}
 

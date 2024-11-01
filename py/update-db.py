@@ -8,8 +8,6 @@ from okapi import Okapi
 from query import download_query
 from safaricache import load_caches
 from safarilog import load_logs
-from thumbnailer import Thumbnailer
-from downloader import Downloader
 from sidebargen import create_sidebar
 from dbgen import create_db, collect_logs
 from create_list import createlist
@@ -87,26 +85,6 @@ def main(cache_dir):
             if log._coordinates is None:
                 logs_without_coords += 1
     print("-- logs without coordinates: {}/{}".format(logs_without_coords, total_logs))
-
-    print("-- downloading missing images...")
-    downloader = Downloader(threads=4, user_agent=USER_AGENT)
-    thumbnailer = Thumbnailer(threads=4)
-    for cache in caches:
-        if cache._preview_image is not None:
-            extension = 'noext'
-            m = re.match('^.*\.([^.\?]+)(\?.*)?$', cache._preview_image)
-            if m:
-                extension = m.group(1)
-            raw_image = '{}/{}/{}.{}'.format(cache_dir, "orig", cache._code, extension)
-            downloader.add_job(cache._preview_image, raw_image)
-            thumb_small = '{}/{}/{}.jpg'.format(cache_dir, "small", cache._code)
-            thumbnailer.add_job(raw_image, thumb_small, SIZE_SMALL)
-            thumb_big = '{}/{}/{}.jpg'.format(cache_dir, "big", cache._code)
-            thumbnailer.add_job(raw_image, thumb_big, SIZE_BIG)
-    downloader.run()
-
-    print("-- scaling images...")
-    thumbnailer.run()
 
     print("-- creating files...")
     create_db(caches, os.path.join(cache_dir, "safari.sqlite"))

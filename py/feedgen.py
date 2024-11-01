@@ -6,7 +6,6 @@ from utilities import load_template
 def create_feed(caches, file_name):
     header_template = load_template('atomfeed_header')
     item_template = load_template('atomfeed_item')
-    img_template = load_template('atomfeed_item_image')
     footer_template = load_template('atomfeed_footer')
     with open(file_name, 'w') as f:
         count = 30
@@ -21,11 +20,6 @@ def create_feed(caches, file_name):
             it = it.replace('##TITLE##', cache._name)
             it = it.replace('##OWNER##', cache._owner)
             it = it.replace('##DESC##', sanitize_description(cache._description))
-            img = ""
-            thumb = '.cache/big/{}.jpg'.format(cache._code)
-            if os.path.exists(thumb):
-                img = img_template.replace('##URL##', 'https://safari.flopp.net/img/big/{}.jpg'.format(cache._code))
-            it = it.replace('##IMAGE##', img)
             f.write(it)
         f.write(footer_template)
 
