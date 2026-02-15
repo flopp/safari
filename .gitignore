@@ -6,4 +6,5 @@
 .DS_Store
 env
 py/authdata.py
+repo
 __pycache__
