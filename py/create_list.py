@@ -57,9 +57,9 @@ def create_cache_item(template, cache, target_dir):
     if cache._short_description is not None:
         desc = cache._short_description
     finds = f'{cache._founds} Funde'
-    if cache._founds is 0:
+    if cache._founds == 0:
         finds = 'keine Funde'
-    elif cache._founds is 1:
+    elif cache._founds == 1:
         finds = 'ein Fund'
     with_coords = 0
     for log in cache._logs:

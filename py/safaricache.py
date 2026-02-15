@@ -39,7 +39,7 @@ class SafariCache:
         elif images is not None and len(images) > 0:
             return u"{0}".format(images[0]['url'])
         else:
-            ex = 'src="https?:\/\/www.opencaching.de\/images\/uploads\/(\w+-\w+-\w+-\w+-\w+\.jpg)"'
+            ex = 'src="https?://www.opencaching.de/images/uploads/(\w+-\w+-\w+-\w+-\w+\.jpg)"'
             match = re.search(ex, description)
             if match:
                 return u"https://www.opencaching.de/images/uploads/{0}".format(match.group(1))

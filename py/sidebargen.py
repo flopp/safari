@@ -34,9 +34,9 @@ def create_sidebar(caches, index_template, target, cache_dir):
             it = it.replace('##URL##', cache._url)
 
             finds = '{} Funde'.format(cache._founds)
-            if cache._founds is 0:
+            if cache._founds == 0:
                 finds = 'keine Funde'
-            elif cache._founds is 1:
+            elif cache._founds == 1:
                 finds = 'ein Fund'
             it = it.replace('##FINDS##', finds)
 
